@@ -28,7 +28,16 @@ export default async function DashboardPage() {
         >
           <h2 className="text-lg font-semibold">Organizations</h2>
           <p className="text-sm text-muted-foreground mt-1">
-            Manage government and non-government organizations
+            Government and non-government organizations
+          </p>
+        </Link>
+        <Link
+          href="/dashboard/directories"
+          className="border rounded-lg p-6 hover:bg-accent transition"
+        >
+          <h2 className="text-lg font-semibold">Directories</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Company directories by area
           </p>
         </Link>
       </div>
