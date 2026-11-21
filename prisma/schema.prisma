@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  role      String
+  createdAt DateTime @default(now())
+
+  @@index([role])
+}
+
+model Sura {
+  id       Int    @id @default(autoincrement())
+  suraNo   Int    @unique
+  suraName String
+  ayats    Ayat[]
+}
+
+model Ayat {
+  id      Int    @id @default(autoincrement())
+  suraId  Int
+  sura    Sura   @relation(fields: [suraId], references: [id], onDelete: Cascade)
+  ayatNo  Int
+  arabic  String @db.Text
+  english String @db.Text
+  bangla  String @db.Text
+
+  @@unique([suraId, ayatNo])
+  @@index([suraId])
+}
+
+model HadithBook {
+  id      Int      @id @default(autoincrement())
+  name    String
+  hadiths Hadith[]
+}
+
+model Hadith {
+  id       Int        @id @default(autoincrement())
+  bookId   Int
+  book     HadithBook @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  hadithNo String
+  arabic   String     @db.Text
+  english  String     @db.Text
+  bangla   String     @db.Text
+
+  @@index([bookId])
+}
+
+model Organization {
+  id        Int      @id @default(autoincrement())
+  kind      String
+  name      String
+  org       String?
+  website   String?
+  email     String?
+  phone     String?
+  createdAt DateTime @default(now())
+
+  @@index([kind])
+  @@index([name])
+}
+
+model Directory {
+  id        Int       @id @default(autoincrement())
+  area      String
+  district  String
+  country   String
+  thana     String
+  companies Company[]
+}
+
+model Company {
+  id                  Int       @id @default(autoincrement())
+  directoryId         Int
+  directory           Directory @relation(fields: [directoryId], references: [id], onDelete: Cascade)
+  name                String
+  website             String?
+  type                String
+  location            String
+  area                String
+  thana               String
+  district            String
+  country             String
+  services            String[]
+  email               String?
+  phone               String?
+  verification_status String
+  job_status          String
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  @@index([directoryId])
+  @@index([area])
+  @@index([district])
+  @@index([thana])
+  @@index([name])
+}
+
+model Blog {
+  id          Int      @id @default(autoincrement())
+  image       String?
+  titleBn     String
+  titleEn     String
+  shortDescBn String   @db.Text
+  shortDescEn String   @db.Text
+  fullDescBn  String   @db.Text
+  fullDescEn  String   @db.Text
+  readTime    Int
+  date        DateTime @default(now())
+  category    String
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([date])
+}

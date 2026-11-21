@@ -13,12 +13,14 @@
     "@apollo/client": "^4.3.8",
     "@base-ui/react": "^1.9.0",
     "@hookform/resolvers": "^7.0.7",
+    "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
     "@tanstack/react-table": "^9.3.1",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.11.0",
     "cn": "^0.5.2",
+    "dotenv": "^18.0.10",
     "graphql": "^17.1.0",
     "graphql-yoga": "^6.1.0",
     "html-react-parser": "^6.1.10",
@@ -38,6 +40,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^8.0.0",
     "@graphql-codegen/client-preset": "^7.0.0",
+    "@prisma/prisma7": "^7.10.1",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
@@ -48,6 +51,7 @@
     "eslint-config-next": "16.4.6",
     "prisma": "^8.0.0-rc.34",
     "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
